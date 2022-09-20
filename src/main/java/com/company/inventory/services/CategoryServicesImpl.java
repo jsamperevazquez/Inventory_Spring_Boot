@@ -88,9 +88,10 @@ public class CategoryServicesImpl implements ICategoryService{
            Category categorySaved = categoryDao.save(category);
             if (categorySaved != null){
                 list.add(categorySaved);
+                response.setMetadata("Ok","1","Category save");
                 response.getCategoryResponse().setCategory(list);
             }else {
-                response.setMetadata("Nok","-1","category not save");
+                response.setMetadata("Nok","-1","Category not save");
                 System.out.println( HttpStatus.BAD_REQUEST);
             }
         }catch (Exception e){
