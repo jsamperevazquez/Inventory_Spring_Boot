@@ -5,6 +5,7 @@ import com.company.inventory.services.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +24,7 @@ public class CategoryRestController{
 
     /**
      * Method to get all categories
-     * @return the response of the query response
+     * @return the query response
      * @GetMapping is a get method whit the general uri + the uri inside ()
      */
     @GetMapping("categories")
@@ -31,4 +32,16 @@ public class CategoryRestController{
         ResponseEntity<CategoryResponseRest> response = service.search();
         return response;
     }
+
+    /**
+     * Method to get category by ID
+     * @param id Id of the object
+     * @return the query response
+     */
+    @GetMapping("/categories/{id}")
+    public ResponseEntity<CategoryResponseRest> searchById(@PathVariable Long id){
+        ResponseEntity<CategoryResponseRest> response = service.searchById(id);
+        return response;
+    }
+
 }
