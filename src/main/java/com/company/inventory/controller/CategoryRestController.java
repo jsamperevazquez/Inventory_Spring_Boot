@@ -1,13 +1,11 @@
 package com.company.inventory.controller;
 
+import com.company.inventory.model.Category;
 import com.company.inventory.response.CategoryResponseRest;
 import com.company.inventory.services.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Controller class to allow other applications can consume it
@@ -27,7 +25,7 @@ public class CategoryRestController{
      * @return the query response
      * @GetMapping is a get method whit the general uri + the uri inside ()
      */
-    @GetMapping("categories")
+    @GetMapping("/categories")
     public ResponseEntity<CategoryResponseRest> searchCategories(){
         ResponseEntity<CategoryResponseRest> response = service.search();
         return response;
@@ -43,5 +41,18 @@ public class CategoryRestController{
         ResponseEntity<CategoryResponseRest> response = service.searchById(id);
         return response;
     }
+
+    /**
+     * Method to save a new category in our BD
+     * @RequestBody return a JSON format to mapping a category object
+     * @param category category object that receives as parameter
+     * @return response of query
+     */
+    @PostMapping("/categories")
+    public ResponseEntity<CategoryResponseRest> save(@RequestBody Category category){
+        ResponseEntity<CategoryResponseRest> response = service.save(category);
+        return response;
+    }
+
 
 }

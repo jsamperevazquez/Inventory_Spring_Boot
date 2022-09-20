@@ -45,6 +45,11 @@ public class CategoryServicesImpl implements ICategoryService{
         return new ResponseEntity<CategoryResponseRest>(response, HttpStatus.OK);
     }
 
+    /**
+     * Method to search category by id
+     * @param id ID of the object to search
+     * @return response of query
+     */
     @Override
     @Transactional(readOnly = true)
     public ResponseEntity<CategoryResponseRest> searchById(Long id) {
@@ -63,6 +68,33 @@ public class CategoryServicesImpl implements ICategoryService{
             }
         }catch (Exception e){
             response.setMetadata("Nok","-1","Bad Response in id query");
+            e.getStackTrace();
+            System.out.println( HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<CategoryResponseRest>(response, HttpStatus.OK);
+    }
+
+    /**
+     * Method to save a new category object
+     * @param category category that receives as parameter to save
+     * @return response of query
+     */
+    @Override
+    @Transactional
+    public ResponseEntity<CategoryResponseRest> save(Category category) {
+        CategoryResponseRest response = new CategoryResponseRest();
+        List<Category> list = new ArrayList<>();
+        try {
+           Category categorySaved = categoryDao.save(category);
+            if (categorySaved != null){
+                list.add(categorySaved);
+                response.getCategoryResponse().setCategory(list);
+            }else {
+                response.setMetadata("Nok","-1","category not save");
+                System.out.println( HttpStatus.BAD_REQUEST);
+            }
+        }catch (Exception e){
+            response.setMetadata("Nok","-1","Error saving category");
             e.getStackTrace();
             System.out.println( HttpStatus.INTERNAL_SERVER_ERROR);
         }
