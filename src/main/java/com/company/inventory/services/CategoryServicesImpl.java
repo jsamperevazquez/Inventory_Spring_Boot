@@ -59,7 +59,7 @@ public class CategoryServicesImpl implements ICategoryService{
 
             }else{
                 response.setMetadata("Nok","-1","category not found");
-                System.out.println( HttpStatus.INTERNAL_SERVER_ERROR);
+                System.out.println( HttpStatus.NOT_FOUND);
             }
         }catch (Exception e){
             response.setMetadata("Nok","-1","Bad Response in id query");
