@@ -22,6 +22,12 @@ public class ResponseRest {
         return metadata;
     }
 
+    /**
+     * Method to set values metadata response
+     * @param type response type
+     * @param code response code
+     * @param date date our response
+     */
     public void setMetadata(String type, String code, String date) {
 
         HashMap<String, String> map = new HashMap<String, String>();
