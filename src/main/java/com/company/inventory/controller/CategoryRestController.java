@@ -54,5 +54,16 @@ public class CategoryRestController{
         return response;
     }
 
+    /**
+     * Method to update the categories
+     * @param category category to update
+     * @param id id of the category
+     * @return response of query
+     */
+    @PutMapping("/categories/{id}")
+    public ResponseEntity<CategoryResponseRest> update(@RequestBody Category category,@PathVariable Long id){
+        ResponseEntity<CategoryResponseRest> response = service.put(category,id);
+        return response;
+    }
 
 }
