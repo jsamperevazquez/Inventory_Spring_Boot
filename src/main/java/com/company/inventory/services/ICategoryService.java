@@ -13,5 +13,6 @@ public interface ICategoryService {
     ResponseEntity<CategoryResponseRest> searchById(Long id);
     ResponseEntity<CategoryResponseRest> save(Category category);
     ResponseEntity<CategoryResponseRest> put(Category category,Long id);
+    ResponseEntity<CategoryResponseRest> deleteById(Long id);
 
 }

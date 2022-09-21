@@ -135,13 +135,33 @@ public class CategoryServicesImpl implements ICategoryService{
 
             }else {
                 response.setMetadata("Nok","0","ID not found");
-                System.out.println( HttpStatus.NOT_FOUND);
+                System.out.println( HttpStatus.NOT_FOUND );
             }
 
         }catch (Exception e){
             response.setMetadata("Nok","-1","Error updating category");
             e.getStackTrace();
-            System.out.println( HttpStatus.INTERNAL_SERVER_ERROR);
+            System.out.println( HttpStatus.INTERNAL_SERVER_ERROR );
+        }
+        return new ResponseEntity<CategoryResponseRest>(response, HttpStatus.OK);
+    }
+
+    /**
+     * Method to delete a category by id
+     * @param id id of category to delete
+     * @return
+     */
+    @Override
+    @Transactional
+    public ResponseEntity<CategoryResponseRest> deleteById(Long id) {
+        CategoryResponseRest response = new CategoryResponseRest();
+        try {
+            categoryDao.deleteById(id);
+            response.setMetadata("OK","1","Category Delete");
+        }catch (Exception e){
+            response.setMetadata("Nok","-1","Error on Delete");
+            e.getStackTrace();
+            System.out.println( HttpStatus.NOT_FOUND );
         }
         return new ResponseEntity<CategoryResponseRest>(response, HttpStatus.OK);
     }
