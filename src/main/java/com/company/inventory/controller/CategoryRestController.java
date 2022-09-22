@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
  * Controller class to allow other applications can consume it
  * @RequestMapping is the general uri of our application
  */
+@CrossOrigin(origins ={"http://localhost:4200"})
 @RestController
 @RequestMapping("/api/v1")
 public class CategoryRestController{
