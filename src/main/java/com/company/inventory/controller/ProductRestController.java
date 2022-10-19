@@ -48,4 +48,15 @@ public class ProductRestController {
         return response;
     }
 
+    /**
+     * Search by ID method
+     * @param id
+     * @return response
+     */
+    @GetMapping("/products/{id}")
+    public ResponseEntity<ProductResponseRest> searchById(@PathVariable Long id){
+        ResponseEntity<ProductResponseRest> response = iProductService.searchById(id);
+        return response;
+    }
+
 }
