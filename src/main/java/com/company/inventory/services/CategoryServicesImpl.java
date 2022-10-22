@@ -60,7 +60,7 @@ public class CategoryServicesImpl implements ICategoryService{
             if (category.isPresent()){
                 list.add(category.get());
                 response.getCategoryResponse().setCategory(list);
-                response.setMetadata("Ok","1","Good Response");
+                response.setMetadata("Ok","00","Good Response");
 
             }else{
                 response.setMetadata("Nok","-1","category not found");
