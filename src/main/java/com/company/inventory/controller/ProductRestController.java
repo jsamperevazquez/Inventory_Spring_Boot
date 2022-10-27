@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin (originPatterns = "*" , methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.OPTIONS,RequestMethod.PUT})
 @RestController
 @RequestMapping("api/v1")
 public class ProductRestController {
